@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo_230712.mapper.LoginServiceMapper">
+    <sql id="cloumns">
+            id,
+            user_code userCode,
+            pass_word password,
+            phone,
+            status,
+            name
+    </sql>
+    <select id="getLoginUserInfo" resultType="com.demo_230712.entity.LoginUser" parameterType="com.demo_230712.entity.LoginUser">
+        select
+           <include refid="cloumns"/>
+        from
+            login_user
+        where
+            user_code = #{userCode}
+    </select>
+
+    <select id="queryUserList" resultType="com.demo_230712.entity.LoginUser" parameterType="com.demo_230712.vo.LoginUserVo">
+        select
+            <include refid="cloumns"/>
+        from
+            login_user
+        <where>
+            <if test="userCode != null and userCode != ''"> and user_code = #{userCode}</if>
+            <if test="name != null and name != ''"> and name = #{name}</if>
+        </where>
+    </select>
+
+    <insert id="addPeople" parameterType="com.demo_230712.entity.LoginUser">
+        insert into login_user(user_code, pass_word, status, phone, name) values
+        (#{userCode}, #{password}, #{status}, #{phone}, #{name});
+    </insert>
+
+    <update id="updatePeople"  parameterType="com.demo_230712.entity.LoginUser">
+        update
+            login_user
+        set
+        <trim  suffix="" suffixOverrides=",">
+            <if test="phone != null and phone != ''">  phone = #{phone},</if>
+            <if test="name != null and name != ''">  name = #{name},</if>
+            <if test="password != null and password != ''"> pass_word = #{password},</if>
+            <if test="status != null and status != ''"> status = #{status},</if>
+        </trim>
+             where id = #{id}
+    </update>
+</mapper>
