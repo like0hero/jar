@@ -1,3 +1,4 @@
+/*
 package com.demo_230712.controller;
 
 
@@ -9,11 +10,13 @@ import com.aliyun.tea.*;
 @Controller
 public class DingDingController {
 
-    /**
+    */
+/**
      * 使用 Token 初始化账号Client
      * @return Client
      * @throws Exception
-     */
+     *//*
+
     public static com.aliyun.dingtalkrobot_1_0.Client createClient() throws Exception {
         com.aliyun.teaopenapi.models.Config config = new com.aliyun.teaopenapi.models.Config();
         config.protocol = "https";
@@ -47,7 +50,8 @@ public class DingDingController {
 
         }
     }
-    /*@RequestMapping("/sendMessage")
+    */
+/*@RequestMapping("/sendMessage")
     @ResponseBody
     public String sendMessage(){
         try {
@@ -73,7 +77,9 @@ public class DingDingController {
             e.printStackTrace();
         }
         return "tcp成功";
-    }*/
+    }*//*
+
 
 
 }
+*/
